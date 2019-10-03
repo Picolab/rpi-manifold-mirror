@@ -9,15 +9,23 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+		width: 800,
+		height: 600,
+		x: 0,
+		y: 0,
+		darkTheme: true,
+		webPreferences: {
+			nodeIntegration: false,
+			zoomFactor: process.env.zoom
+		},
+		backgroundColor: "#000000",
+    kioskmode: true,
+    fullscreen: true,
+		autoHideMenuBar: true
+	})
 
   // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL('https://manifold.picolabs.io')
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
