@@ -1,6 +1,6 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
+const {app, BrowserWindow} = require('electron');
+const config = require('./config');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -19,13 +19,17 @@ function createWindow () {
 			zoomFactor: process.env.zoom
 		},
 		backgroundColor: "#000000",
+    frame: false,
     kioskmode: true,
     fullscreen: true,
 		autoHideMenuBar: true
 	})
 
   // and load the index.html of the app.
-  mainWindow.loadURL('https://manifold.picolabs.io')
+  let url = `${config.host}:${config.port}`;
+  console.log(url);
+  console.log(process.env.npm_lifecycle_event);
+  mainWindow.loadURL(url);
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
